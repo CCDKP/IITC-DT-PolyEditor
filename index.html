@@ -1,54 +1,44 @@
-<html>
-<head>
-	<title>IITC Draw Tools Poly Converter v.07</title>
-	<script type="text/javascript">
-	function convert() {
-		var polygons = 0;
-		var polylines = 0;
-		var circles = 0;
-		var markers = 0;
-		var input = JSON.parse(document.getElementById("datain").value);
-		for(var i=0;i<input.length;i++) {
-			switch(input[i].type) {
-				case "polyline":
-					polylines++;
-					continue;
-				case "circle":
-					circles++;
-					continue;
-				case "marker":
-					markers++;
-					continue;
-				case "polygon":
-					polygons++;
-					input[i].type = "polyline";
-					input[i].latLngs.push(input[i].latLngs[0]);
-					continue;
-				default:
-					continue;
-			}
-		}
-		document.getElementById("outPolylines").innerHTML = polylines;
-		document.getElementById("outCircles").innerHTML = circles;
-		document.getElementById("outMarkers").innerHTML = markers;
-		document.getElementById("outPolygons").innerHTML = polygons;
-		document.getElementById("dataout").value = JSON.stringify(input);
-	}	
-	</script>
-</head>
-<body>
-	<p>This site is intended to remove the fill from polygons exported by the IITC Draw Tools plugin.
-	<p>Paste Draw Tools export here:</p>
-	<textarea id="datain" rows="20" cols="100"></textarea>
-	<br><br>
-	<button onclick="convert();">convert</button>
-	Polygons: <span id=outPolygons>0</span>
-	Polylines: <span id=outPolylines>0</span>
-	Markers: <span id=outMarkers>0</span>
-	Circles: <span id=outCircles>0</span>
-    <br><br>
-	Converted Data: <br>
-	<textarea id="dataout" rows="20" cols="100"></textarea><br>
+<!-- index.html -->
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+	    <style>
+            .navbar { border-radius:0; }
+        </style>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+        <!-- load angular and angular route via CDN -->
+        <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+		<!-- Local scripts here -->
+        <script src="script.js"></script>
+		<script src="jscolor.min.js"></script>
+	    <title>IITC Draw Tools Poly Converter v1.00</title>
+    </head>
+    <body ng-app="polyEdit" ng-controller="ctrl">
+    <!-- HEADER AND NAVBAR -->
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="#">IITC Draw Tools Poly Converter V1.00</a>
+            </div>
+
+        </nav>
 	
-</body>
-</html>
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+        <div class="container">
+            <div class="jumbotron text-center">
+                <p>This site is intended to remove the fill from polygons exported by the IITC Draw Tools plugin.</p>
+                <a id="loadBtn" ui-sref="load" class="btn btn-primary" ><i class="fa fa-folder-o"></i> Load</a>
+                <a id="editBtn" ui-sref="edit" class="btn btn-primary" disabled><i class="fa fa-edit"></i> Edit</a>
+				<a id="saveBtn" ui-sref="save" class="btn btn-primary" disabled><i class="fa fa-save"></i> Save</a>
+            </div>				
+            
+            <div ui-view></div>
+			
+        </div>
+
+    </body>
+    </html>
