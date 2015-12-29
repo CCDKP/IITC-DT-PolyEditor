@@ -10,35 +10,17 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
         <!-- load angular and angular route via CDN -->
-        <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 
 		<!-- Local scripts here -->
-        <script src="script.js"></script>
+        <script src="polyedit.js"></script>
 		<script src="jscolor.min.js"></script>
 	    <title>IITC Draw Tools Poly Converter v1.00</title>
     </head>
-    <body ng-app="polyEdit" ng-controller="ctrl">
-    <!-- HEADER AND NAVBAR -->
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" ui-sref="#">IITC Draw Tools Poly Converter V1.00</a>
-            </div>
-
-        </nav>
-	
-        <!-- MAIN CONTENT AND INJECTED VIEWS -->
-        <div class="container">
-            <div class="jumbotron text-center">
-                <p>This site is intended to remove the fill from polygons exported by the IITC Draw Tools plugin.</p>
-                <a id="loadBtn" ui-sref="load" class="btn btn-primary" ><i class="fa fa-folder-o"></i> Load</a>
-                <a id="editBtn" ui-sref="edit" class="btn btn-primary" disabled><i class="fa fa-edit"></i> Edit</a>
-				<a id="saveBtn" ui-sref="save" class="btn btn-primary" disabled><i class="fa fa-save"></i> Save</a>
-            </div>				
-            
-            <div ui-view></div>
-			
-        </div>
-
+    <body ng-app="polyEdit">
+		<div class="container">
+			<div ui-view></div>
+		</div>
     </body>
     </html>
