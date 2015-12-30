@@ -1,0 +1,20 @@
+ <!-- HEADER AND NAVBAR -->
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="#">IITC Draw Tools Poly Converter V1.00</a>
+            </div>
+
+        </nav>
+	
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+        <div class="container">
+            <div class="jumbotron text-center">
+                <p>This site is intended to remove the fill from polygons exported by the IITC Draw Tools plugin.</p>
+                <a ui-sref-active="active" id="loadBtn" ui-sref=".load" class="btn btn-primary" ><i class="fa fa-folder-o"></i> Load</a>
+                <a ui-sref-active="active" id="editBtn" ui-sref=".edit" class="btn btn-primary" disabled><i class="fa fa-edit"></i> Edit</a>
+				<a ui-sref-active="active" id="saveBtn" ui-sref=".save" class="btn btn-primary" disabled><i class="fa fa-save"></i> Save</a>
+            </div>				
+            
+            <div id="pe-views" ui-view></div>
+
+        </div>
