@@ -1,7 +1,7 @@
 <div class="well"><h3>Polygons: {{ polygons }}	 Polylines: {{ polylines }}  Markers: {{ markers }}  Circles: {{ circles }} </div>
 <p><button type="button" class="btn btn-primary" ng-click="convertAll();">Convert all Polygons</button>
-<button type="button" class="btn btn-primary">Randomize Colors</button>
-<button type="button" class="btn btn-primary">Same Colors</button></p>
+<button type="button" class="btn btn-primary" ng-click="randomizeColors();">Randomize Colors</button>
+<button type="button" class="btn btn-primary" ng-click="sameColor();">Match First Color</button></p>
 
 
 <table id="editTable" class="table table-striped">
@@ -11,9 +11,17 @@
 			<th>Type</th>
 			<th>Points</th>
 			<th>Color</th>
-			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
+		<tr ng-repeat="obj in data">
+			<td>{{ $index }}</td>
+			<td>{{ obj.type }}</td>
+			<td>{{ obj.latLngs.length }}</td>
+			<td style="background:{{ obj.color }};">
+				<input colorpicker ng-model="obj.color" type="text" value="{{ obj.color }}" size=7> 
+			</td>
+		</tr>
+		
 	</tbody>
 </table>

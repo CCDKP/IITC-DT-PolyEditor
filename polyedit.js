@@ -1,7 +1,7 @@
 // script.js
 
 //Globals
-angular.module('polyEdit', ['ui.router'])
+angular.module('polyEdit', ['ui.router','colorpicker.module'])
     
 
 //Routing
@@ -118,8 +118,16 @@ angular.module('polyEdit', ['ui.router'])
 		}
 	}
 	
-	$scope.debugger = function () {
-		$scope.polygons++;
+	$scope.sameColor = function(c) {
+		for(var i=1;i<$scope.data.length;i++) {
+			$scope.data[i].color = $scope.data[0].color
+		}
+	}
+	
+	$scope.randomizeColors = function() {
+		for(var i=0;i<$scope.data.length;i++) {
+			$scope.data[i].color = randomColor({luminosity: 'dark'});
+		}
 	}
 	
 });
