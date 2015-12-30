@@ -74,7 +74,7 @@ angular.module('polyEdit', ['ui.router'])
 			 document.getElementById("alertBar").innerHTML = "<div class='alert alert-danger' role='alert'>" + err + " </div>";
 			 return;
 		}
-		$scope.data = $scope.input;
+		angular.copy($scope.input,$scope.data);
 		document.getElementById("editBtn").removeAttribute("disabled");
 		document.getElementById("saveBtn").removeAttribute("disabled");
 		$state.go('^.edit');
@@ -105,6 +105,19 @@ angular.module('polyEdit', ['ui.router'])
 		}
 
 	}
+	
+	$scope.convertPolygon = function(i) {
+		$scope.data[i].type = "polyline";
+		$scope.data[i].latLngs.push($scope.data[i].latLngs[0]);
+	}
+	
+	$scope.convertAll = function() {
+		for(var i=0;i<$scope.data.length;i++) {
+			if ($scope.data[i].type === "polygon")
+				$scope.convertPolygon(i);
+		}
+	}
+	
 	$scope.debugger = function () {
 		$scope.polygons++;
 	}
